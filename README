@@ -1,0 +1,5 @@
+This is a CakePHP component that uses the Google URL Shortener API.
+Actually it's only support the short and expand operation.
+
+You'll need an API Key to use this component.
+For more info about the API see http://code.google.com/intl/pt-BR/apis/urlshortener/
