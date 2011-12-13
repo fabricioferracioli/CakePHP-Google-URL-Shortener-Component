@@ -6,9 +6,10 @@
 
         private $shortenerUrl;
 
-        public function initialize(&$controller, $settings = array())
+        public function __construct(ComponentCollection $collection, $settings = array())
         {
-            $this->controller =& $controller;
+            $this->_controller = $collection->getController();
+            parent::__construct($collection, $settings);
             $this->shortenerUrl = 'https://www.googleapis.com/urlshortener/v1/url?key=';
 
             if (!empty($settings))
@@ -20,11 +21,16 @@
             }
         }
 
-        public function startup(&$controller)
+        public function initialize($controller)
+        {
+            $this->controller = $controller;
+        }
+
+        public function startup($controller)
         {
         }
 
-        public function beforeRender(&$controller)
+        public function beforeRender($controller)
         {
         }
 
@@ -63,11 +69,11 @@
             return false;
         }
 
-        public function shutdown(&$controller)
+        public function shutdown($controller)
         {
         }
 
-        public function beforeRedirect(&$controller, $url, $status = null, $exit = true)
+        public function beforeRedirect($controller, $url, $status = null, $exit = true)
         {
         }
     }
