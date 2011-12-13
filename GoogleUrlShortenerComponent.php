@@ -1,14 +1,12 @@
 <?php
 
-    class GoogleUrlShortenerComponent extends Object
+    class GoogleUrlShortenerComponent extends Component
     {
-        var $name = 'GoogleUrlShortener';
+        private $apiKey;
 
-        public $apiKey;
+        private $shortenerUrl;
 
-        public $shortenerUrl;
-
-        function initialize(&$controller, $settings = array())
+        public function initialize(&$controller, $settings = array())
         {
             $this->controller =& $controller;
             $this->shortenerUrl = 'https://www.googleapis.com/urlshortener/v1/url?key=';
@@ -22,19 +20,19 @@
             }
         }
 
-        function startup(&$controller)
+        public function startup(&$controller)
         {
         }
 
-        function beforeRender(&$controller)
+        public function beforeRender(&$controller)
         {
         }
 
-        function generateShortUrl($longUrl = null)
+        public function generateShortUrl($longUrl = null)
         {
             if (!empty($longUrl))
             {
-                App::import('Core', 'HttpSocket');
+                App::uses('HttpSocket', 'Network/Http');
                 $socket = new HttpSocket();
 
                 $result = $socket->post(
@@ -48,11 +46,11 @@
             return false;
         }
 
-        function getOriginalUrl($shortUrl = null)
+        public function getOriginalUrl($shortUrl = null)
         {
             if (!empty($shortUrl))
             {
-                App::import('Core', 'HttpSocket');
+                App::uses('HttpSocket', 'Network/Http');
                 $socket = new HttpSocket();
 
                 $result = $socket->get(
@@ -65,11 +63,11 @@
             return false;
         }
 
-        function shutdown(&$controller)
+        public function shutdown(&$controller)
         {
         }
 
-        function beforeRedirect(&$controller, $url, $status = null, $exit = true)
+        public function beforeRedirect(&$controller, $url, $status = null, $exit = true)
         {
         }
     }
