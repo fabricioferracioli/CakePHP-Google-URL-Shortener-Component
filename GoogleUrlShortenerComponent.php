@@ -69,6 +69,23 @@
             return false;
         }
 
+        public function getAnalytics($shortUrl = null)
+        {
+            if (!empty($shortUrl))
+            {
+                App::uses('HttpSocket', 'Network/Http');
+                $socket = new HttpSocket();
+
+                $result = $socket->get(
+                    $this->shortenerUrl . $this->apiKey,
+                    array('shortUrl' => $shortUrl, 'projection' => 'FULL')
+                );
+
+                return json_decode($result, true);
+            }
+            return false;
+        }
+
         public function shutdown($controller)
         {
         }
