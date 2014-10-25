@@ -21,16 +21,16 @@
             }
         }
 
-        public function initialize($controller)
+        public function initialize(Controller $controller)
         {
             $this->controller = $controller;
         }
 
-        public function startup($controller)
+        public function startup(Controller $controller)
         {
         }
 
-        public function beforeRender($controller)
+        public function beforeRender(Controller $controller)
         {
         }
 
@@ -86,11 +86,11 @@
             return false;
         }
 
-        public function shutdown($controller)
+        public function shutdown(Controller $controller)
         {
         }
 
-        public function beforeRedirect($controller, $url, $status = null, $exit = true)
+        public function beforeRedirect(Controller $controller, $url, $status = null, $exit = true)
         {
         }
     }
